@@ -27,7 +27,7 @@ FBL.ns(function() {
             saveLastPositionListener: function(evt) {
                 this.saveLastPosition(evt.target.getAttribute("xPos"), evt.target.getAttribute("yPos"),Firebug.currentContext.getPanel("pixelPerfect").document.getElementById("ctl-opacity-numbers").innerHTML);
             },
-            
+
             reloadLastOverlayListener: function(evt) {
             	pixelPerfect.utils.fireEyeClickEvent("eye_" + Firebug.getPref(Firebug.prefDomain, "pixelPerfect.lastOverlayFileName"), Firebug.currentContext.getPanel("pixelPerfect").document);
             },
@@ -57,7 +57,7 @@ FBL.ns(function() {
                     Firebug.setPref('defaultPanelName', 'console');
                 }
             },
-            
+
             showPanel: function(browser, panel)
             {
                 var isPixelPerfectExtension = panel && panel.name == "pixelPerfect";
@@ -82,7 +82,7 @@ FBL.ns(function() {
 		            return;
 		        }
             },
-            
+
             saveLastPosition: function(xPos, yPos, opacity) {
                 Firebug.setPref(Firebug.prefDomain, "pixelPerfect.lastXPos", xPos);
                 Firebug.setPref(Firebug.prefDomain, "pixelPerfect.lastYPos", yPos);
@@ -120,7 +120,7 @@ FBL.ns(function() {
                 	doc.removeChild(existingEle);
                 	existingEle.parentNode.removeChild(existingEle);
                 }
-                
+
                 this.panelNode = doc.createElement("div");
                 this.panelNode.setAttribute("id", "pixelperfect-wrapper");
                 this.panelNode.ownerPanel = this;
@@ -161,10 +161,10 @@ FBL.ns(function() {
                   };
                   menuOptions.push(menuItemObj);
                 };
-                
+
                 var hideStatusBarPref = 'extensions.firebug.pixelPerfect.hidestatusbar';
                 var hideWhenFocusLostPref = 'extensions.firebug.pixelPerfect.hidewhenfocuslost';
-                
+
                 /**
                  * @param {string} prefName The name of a boolean preference.
                  * @return {Function} A function that will toggle the value of that
@@ -176,12 +176,13 @@ FBL.ns(function() {
                     pixelPerfect.utils.setBoolPref(prefName, !oldValue);
                   };
                 };
-                
+
+                addMenuOption('Add Overlay', Firebug.PixelPerfectModule.addOverlay);
                 addMenuOption('Hide Statusbar Icon', buildToggleBoolPrefFn(hideStatusBarPref), pixelPerfect.utils.getBoolPref(hideStatusBarPref));
                 addMenuOption('Hide Overlay When Inspecting', buildToggleBoolPrefFn(hideWhenFocusLostPref), pixelPerfect.utils.getBoolPref(hideWhenFocusLostPref));
-                
+
                 return menuOptions;
-                
+
             }
         });
 
