@@ -1,7 +1,7 @@
 #!/bin/bash
 # generate the XPI file
 # TODO: Pass in version as parameter
-VERSION=1.7.1
+VERSION=1.7.2
 echo "Generating $APP_NAME.xpi..."
 cd srcExtension
 zip -r ../dist/pixelperfect-$VERSION.xpi *
